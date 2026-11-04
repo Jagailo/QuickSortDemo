@@ -28,12 +28,7 @@ function drawArray(array, canvasId, columnOnly) {
         var min = Math.min.apply(null, array[arrayIndex][0]);
         if (min < 0) {
             for (var i = 0; i < array[arrayIndex][0].length; i++) {
-                array[arrayIndex][0][i] += Math.abs(min) + 1;
-            }
-            min = Math.min.apply(null, array[arrayIndex][0]);
-        } else if (min == 0) {
-            for (var i = 0; i < array[arrayIndex][0].length; i++) {
-                array[arrayIndex][0][i]++;
+                array[arrayIndex][0][i] -= min;
             }
         }
 
@@ -52,7 +47,7 @@ function drawArray(array, canvasId, columnOnly) {
 
         var max = Math.max.apply(null, array[arrayIndex][0]);
         for (var i = 0, x = spacingWidth; i < array[arrayIndex][0].length; i++, x += columnWidth + spacingWidth * 2) {
-            var columnHeightPercents = array[arrayIndex][0][i] * 100 / max;
+            var columnHeightPercents = max == 0 ? 100 : array[arrayIndex][0][i] * 100 / max;
             var columnHeightPixels = Math.round(columnHeightPercents * height / 100);
             if (columnHeightPixels < 1) {
                 columnHeightPixels = 1;
@@ -60,16 +55,12 @@ function drawArray(array, canvasId, columnOnly) {
 
             var color = '#262626';
             if (!columnOnly) {
-                if (array[arrayIndex][1] == array[arrayIndex][2]) {
-                    color = '#262626';
-                }
-                if (i == array[arrayIndex][5]) {
-                    color = '#FF0000';
-                }
                 if (i == array[arrayIndex][1]) {
                     color = '#5659C9';
                 } else if (i == array[arrayIndex][2]) {
                     color = '#2CC990';
+                } else if (i == array[arrayIndex][5]) {
+                    color = '#FF0000';
                 }
             }
 
