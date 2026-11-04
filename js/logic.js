@@ -5,19 +5,19 @@ function randomInteger(min, max) {
     return Math.round(rand);
 }
 
-function getConverArray(array) {
+function getConvertArray(array) {
     for (var i = 0; i < array.length; i++) {
         array[i] = +array[i];
     }
     return array;
 }
 
-function printArray(array, TagID) {
+function printArray(array, tagId) {
     var str = '';
     for (var i = 0; i < array.length; i++) {
         str += '<span class="array-elem-cell">' + array[i] + '</span>';
     }
-    document.getElementById(TagID).innerHTML = str;
+    document.getElementById(tagId).innerHTML = str;
 }
 
 function addLoop(array, first, second, left, right, pivot) {
@@ -25,11 +25,16 @@ function addLoop(array, first, second, left, right, pivot) {
 }
 
 function startAnimation(sliderId, count) {
+    if (sortHistory.length === 0) {
+        return null;
+    }
+
     var slider = document.getElementById(sliderId);
+    var sliderValue = Number(slider.value) || 0;
     var ms = 1;
 
-    if (slider.value != 0) {
-        ms = slider.value;
+    if (sliderValue != 0) {
+        ms = sliderValue;
     } else {
         if (count > 0 && count < 50) {
             ms = 150;
@@ -50,6 +55,10 @@ function startAnimation(sliderId, count) {
 }
 
 function drawFinalLoop() {
+    if (sortHistory.length === 0) {
+        return;
+    }
+
     var array = [[sortHistory[sortHistory.length - 1][0], 0, 0, 0, 0, 0]];
     drawArray(JSON.parse(JSON.stringify(array)), 'canvas', true);
 }

@@ -10,7 +10,7 @@
 <body>
     <div id="content">
         <div class="controls">
-            <label for="array-input" class="array-input">Enter the numbers:</label>
+            <label for="arrayInput" class="array-input">Enter the numbers:</label>
             <input type="text" name="array-input" id="arrayInput">
             <input type="button" onclick="fillArray()" class="fill-button" value="Fill the array">
             <input type="button" onclick="randomFill()" value="Random fill">
@@ -23,9 +23,9 @@
             <div class="canvas-block">
                 <canvas id="canvas"></canvas>
                 <div class="canvas-control-panel">
-                    <button class="btn" onclick="play()"><i class="fas fa-play"></i></button>
-                    <button class="btn" onclick="pause()"><i class="fas fa-pause"></i></button>
-                    <button class="btn" onclick="stop()"><i class="fas fa-stop"></i></button>
+                    <button type="button" class="btn" onclick="play()" title="Play" aria-label="Play"><i class="fas fa-play"></i></button>
+                    <button type="button" class="btn" onclick="pause()" title="Pause" aria-label="Pause"><i class="fas fa-pause"></i></button>
+                    <button type="button" class="btn" onclick="stop()" title="Stop" aria-label="Stop"><i class="fas fa-stop"></i></button>
                     <div class="slider-control">
                         <div>Animation speed:</div>
                         <div><input id="slider" type="range" min="0" max="2000" value="50" oninput="sliderChange()" /></div>

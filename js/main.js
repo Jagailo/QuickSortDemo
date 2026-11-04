@@ -1,5 +1,5 @@
-var randomArraySizeRange = [6, 90] // [min, max]
-var randomArrayIntRange = [-99, 99] // [min, max]
+var randomArraySizeRange = [6, 90]; // [min, max]
+var randomArrayIntRange = [-99, 99]; // [min, max]
 var arrayCount = 0;
 
 function fillArray() {
@@ -9,11 +9,15 @@ function fillArray() {
     if (inputArray != null) {
         document.getElementById('array-data').style.display = 'block';
         turnOffTimer(true);
-        var array = getConverArray(inputArray);
+        var array = getConvertArray(inputArray);
         arrayCount = array.length;
         clearHistory();
         printArray(array, 'sourceArray');
         printArray(quickSort(array), 'currentArray');
+
+        if (sortHistory.length === 0) {
+            addLoop(array, 0, 0, 0, array.length - 1, 0);
+        }
 
         setTimer(startAnimation('slider', arrayCount));
     }
@@ -57,10 +61,12 @@ function sliderChange() {
 }
 
 function sliderInputChange() {
-    var input = document.getElementById('sliderInput');    
-    if (+input.value != NaN && input.value != '' && input.value >= 0 && input.value <= 2000) {
-        document.getElementById('slider').value = input.value;
-        if (input.value == 0) {
+    var input = document.getElementById('sliderInput');
+    var value = +input.value;
+
+    if (input.value.trim() != '' && !isNaN(value) && value >= 0 && value <= 2000) {
+        document.getElementById('slider').value = value;
+        if (value == 0) {
             input.value = 'auto';
         }
     }

@@ -38,7 +38,7 @@ function partition(items, left, right) {
 }
 
 function swap(items, firstIndex, secondIndex) {
-    const temp = items[firstIndex];
+    var temp = items[firstIndex];
     items[firstIndex] = items[secondIndex];
     items[secondIndex] = temp;
 }
